@@ -34,23 +34,52 @@ O sistema GEPAT tem como objetivo principal gerenciar o patrimônio de nossos cl
 
 ### 3.1. Banco de Dados
 - **Descrição:** Armazenar todas as informações relacionadas aos itens patrimoniais, localizações, estados de conservação e histórico de movimentações.
-- **Tecnologia:** SQL (MySQL, PostgreSQL) ou NoSQL (MongoDB), dependendo da complexidade e volume de dados.
+- **Tecnologia:** 
+  - **Banco de Dados:** PostgreSQL (recomendado para sistemas robustos e escaláveis) ou SQLite (para prototipagem ou projetos menores).
+  - **ORM:** SQLAlchemy (compatível com FastAPI) ou Tortoise ORM (especificamente para async com FastAPI).
 
 ### 3.2. Backend
 - **Descrição:** Lógica de negócio e API para interação com o frontend e banco de dados.
-- **Tecnologia:** Node.js, Django, Spring Boot, etc.
+- **Tecnologia:** 
+  - **Framework:** FastAPI (para alta performance e suporte a operações assíncronas).
+  - **Validação de Dados:** Pydantic (integrado ao FastAPI para validação e serialização de dados).
+  - **Autenticação:** OAuth2 com JWT (usando bibliotecas como `python-jose` e `passlib` para hash de senhas).
 
 ### 3.3. Frontend
 - **Descrição:** Interface gráfica para interação do usuário com o sistema.
-- **Tecnologia:** React, Angular, Vue.js, etc.
+- **Tecnologia:** 
+  - **Framework:** React.js (recomendado para interfaces modernas e responsivas).
+  - **Gerenciamento de Estado:** Redux ou Context API.
+  - **Estilização:** Tailwind CSS ou Material-UI para componentes prontos e estilização rápida.
 
 ### 3.4. Serviço de Autenticação
 - **Descrição:** Gerenciar autenticação e controle de acesso.
-- **Tecnologia:** OAuth, JWT, etc.
+- **Tecnologia:** 
+  - **Autenticação:** OAuth2 com JWT (JSON Web Tokens).
+  - **Bibliotecas:** `python-jose` para manipulação de JWT e `bcrypt` ou `passlib` para hash de senhas.
 
 ### 3.5. Serviço de Relatórios
 - **Descrição:** Gerar relatórios e logs de auditoria.
-- **Tecnologia:** JasperReports, Crystal Reports, ou bibliotecas de geração de PDF/Excel.
+- **Tecnologia:** 
+  - **Geração de Relatórios:** ReportLab (para PDF) ou Pandas (para Excel).
+  - **Logs:** Loguru ou structlog para gerenciamento de logs estruturados.
+
+### 3.6. Infraestrutura e Deploy
+- **Descrição:** Hospedagem e gerenciamento do sistema.
+- **Tecnologia:** 
+  - **Contêinerização:** Docker (para criar ambientes isolados e consistentes).
+  - **Orquestração:** Docker Compose (para desenvolvimento local) ou Kubernetes (para produção escalável).
+  - **Servidor Web:** Uvicorn (ASGI server para FastAPI).
+  - **Hospedagem:** AWS, Google Cloud, ou Heroku (para deploy rápido e escalável).
+
+### 3.7. Testes
+- **Descrição:** Garantir a qualidade e confiabilidade do sistema.
+- **Tecnologia:** 
+  - **Testes Unitários:** Pytest (compatível com FastAPI).
+  - **Testes de Integração:** Pytest com HTTPX (para testar endpoints da API).
+  - **Testes de Frontend:** Jest e React Testing Library (para testes no frontend).
+
+---
 
 ## 4. Fluxo de Trabalho
 
@@ -59,7 +88,3 @@ O sistema GEPAT tem como objetivo principal gerenciar o patrimônio de nossos cl
 3. **Atualização de Estado de Conservação:** O estado de conservação do item é atualizado conforme inspeções periódicas.
 4. **Consulta de Histórico:** O histórico de localizações e estados de conservação pode ser consultado a qualquer momento.
 5. **Geração de Relatórios:** Relatórios são gerados para auditoria e gestão.
-
-## 5. Considerações Finais
-
-O sistema GEPAT deve ser desenvolvido com foco na usabilidade, segurança e escalabilidade. É importante que a interface seja intuitiva e que o sistema seja capaz de lidar com um grande volume de dados e usuários simultaneamente. Além disso, a segurança dos dados deve ser uma prioridade, garantindo que apenas usuários autorizados possam acessar e modificar informações sensíveis.
